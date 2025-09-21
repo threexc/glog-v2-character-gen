@@ -1,4 +1,4 @@
-use dnd_character_generator::{CharacterGenerator, save_characters_to_file};
+use glog_v2_character_generator::{CharacterGenerator, save_characters_to_file};
 use std::io::{self, Write};
 
 fn main() -> anyhow::Result<()> {

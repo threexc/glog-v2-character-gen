@@ -5,7 +5,7 @@ use axum::{
     routing::{get, post},
     Router,
 };
-use dnd_character_generator::{CharacterGenerator, Character};
+use glog_v2_character_generator::{CharacterGenerator, Character};
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 use tower_http::services::ServeDir;
