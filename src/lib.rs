@@ -60,7 +60,7 @@ impl CharacterGenerator {
         }
         
         // Generate ability scores
-        let ability_scores = Self::generate_ability_scores(&mut rng);
+        let ability_scores = Self::generate_ability_scores(&mut rng, 3, 6, 0);
         
         Ok(Character {
             level,
@@ -120,28 +120,25 @@ impl CharacterGenerator {
         Ok(())
     }
     
-    fn generate_ability_scores(rng: &mut impl Rng) -> AbilityScores {
+    fn generate_ability_scores(rng: &mut impl Rng, dice: u8, faces: u8, lowest: u8) -> AbilityScores {
         AbilityScores {
-            strength: Self::roll_ability_score(rng),
-            dexterity: Self::roll_ability_score(rng),
-            constitution: Self::roll_ability_score(rng),
-            intelligence: Self::roll_ability_score(rng),
-            wisdom: Self::roll_ability_score(rng),
-            charisma: Self::roll_ability_score(rng),
+            strength: Self::roll_ability_score(rng, dice, faces, lowest),
+            dexterity: Self::roll_ability_score(rng, dice, faces, lowest),
+            constitution: Self::roll_ability_score(rng, dice, faces, lowest),
+            intelligence: Self::roll_ability_score(rng, dice, faces, lowest),
+            wisdom: Self::roll_ability_score(rng, dice, faces, lowest),
+            charisma: Self::roll_ability_score(rng, dice, faces, lowest),
         }
     }
     
-    //fn roll_ability_score(rng: &mut impl Rng) -> u8 {
-    //  // Roll 4d6, drop the lowest
-    //  let mut rolls: Vec<u8> = (0..4).map(|_| rng.gen_range(1..=6)).collect();
-    //  rolls.sort_unstable();
-    //rolls[1..].iter().sum() // Skip the lowest roll
-    //}
-    fn roll_ability_score(rng: &mut impl Rng) -> u8 {
+    pub fn roll_ability_score(rng: &mut impl Rng, dice: u8, faces: u8, lowest: u8) -> u8 {
         // Roll 3d6
-        let mut rolls: Vec<u8> = (0..3).map(|_| rng.gen_range(1..=6)).collect();
+        let mut rolls: Vec<u8> = (0..dice).map(|_| rng.gen_range(1..=faces)).collect();
         rolls.sort_unstable();
-        rolls.iter().sum()
+
+        // need to cast 'lowest' to usize to use in a slice
+        let lowest = lowest as usize;
+        rolls[lowest..].iter().sum()
     }
 }
 
