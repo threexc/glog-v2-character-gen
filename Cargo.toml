@@ -26,6 +26,10 @@ name = "cli"
 path = "src/bin/cli.rs"
 
 [[bin]]
+name = "stats"
+path = "src/bin/stats.rs"
+
+[[bin]]
 name = "web"
 path = "src/bin/web.rs"
 required-features = ["web"]
