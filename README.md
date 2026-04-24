@@ -6,9 +6,9 @@ game system, also known as GLOG v2.
 
 Run the `stats` binary with e.g.:
 
-3d6: `cargo run --bin stats -- --dice 3 --sides 6`
+3d6: `cargo run --bin stats -- --dice 3 --faces 6`
 
-4d6 drop lowest: `cargo run --bin stats -- --dice 4 --sides 6 --lowest 1`
+4d6 drop lowest: `cargo run --bin stats -- --dice 4 --faces 6 --lowest 1`
 
 Defaults to 3d6.
 
